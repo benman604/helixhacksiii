@@ -31,47 +31,46 @@
 
 
 
-model = pickle.load(open('finalized_model.sav','rb'))
+##model = pickle.load(open('finalized_model.sav','rb'))
 
-with open('finalized_model.sav', 'rb') as f:
-    model, vectorizer = pickle.load(f)
+##with open('finalized_model.sav', 'rb') as f:
+    ##model, vectorizer = pickle.load(f)
 
-print(use_model('yo bro wanna go out to eat tmr?'))
+##print(use_model('yo bro wanna go out to eat tmr?'))
 
 #####
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy import stats
 
-df = pd.read_csv('fraudTest.csv')
-
-data = df['amt']
+df_fraud = pd.read_csv('webapp/static/fraudTest.csv')
+data = df_fraud['amt']
+data1 = df_fraud['merchant']
 numpy_array = data.to_numpy()
+numpy_array1 = data1.to_numpy()
 
 x = []
-
 anomalyCount = 0
-
 for loop_var in range(0,len(numpy_array),1):
     x.append(loop_var)
 
-
 y = numpy_array
-
+names = numpy_array1
 slope, intercept, r, p, std_err = stats.linregress(x, y)
 
 def myfunc(x):
       return slope * x + intercept
 
 mymodel = list(map(myfunc, x))
+anomoalies = []
 
 for lop in range(0,len(numpy_array),1):
-    if (y[lop]-myfunc(lop)>=500):
-        # anomalyCount+=1
-        print("Anomaly detected at index: ", x[lop])
+    if (y[lop]-myfunc(lop)>=10000):
+        anomalyCount+=1
+        anomoalies.append("You made a purchase from " + str(names[lop]) + "that costed " + str(y[lop]) + ". Please confirm that this is you.")
 
-print(anomalyCount)
-
+print("You have " + str(anomalyCount) + " anomalies in your transactions.")
+[print(anomaly) for anomaly in anomoalies]
 
 plt.scatter(x, y)
 plt.plot(x, mymodel)

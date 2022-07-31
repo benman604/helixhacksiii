@@ -8,6 +8,17 @@
    --form-element-spacing-vertical: 1rem;
    --form-element-spacing-horizontal: 1.25rem;
  }
+
+ nav{
+  margin-bottom: 20vh; 
+  padding-right: 25px;
+  padding-left: 25px; 
+  box-shadow: rgba(0, 0, 0, 0.158) 0px 0px 20px;
+ }
+
+ summary{
+  font-weight: bold;
+ }
  
  h1,
  h2,
