@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1>Scam Detector</h1>
+        <p>Can't figure out if a stranger who messaged you is a scammer or not? Let a machine learning model help determine if the message may or may not be a scam. Paste the message below to get tips on what you can do.</p>
+        <form action="/api/scams" method="get">
+            <label for="message">Enter Message:</label>
+            <div class="grid">
+                <input type="text" id="message" name="message">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+
+        {% if hasres %}
+            <article>
+                {% if res == "spam" %}
+                    <h1 style="color:red">This person is very likely a scammer</h1>
+                    <p>
+                        It is highly recommended that you do not communicate with this person. 
+                        If possible, you should report and block this user. 
+                        Do not give this person any personal information.
+                        Do not click on any links or images sent by this person.
+                        Do not send any money, gift cards, or other items this person requests.
+                    </p>
+                    <br>
+                    <p><strong>Your message: </strong> {{ msg }}</p>
+                {% else %}
+                    <h1 style="color:green">This person is probably not a scammer</h1>
+                    <p>
+                        Put some info about spammers here. Lorem ipsm 
+                        dolor sit amet, consectetur adipiscing elit. 
+                        Donec euismod, nisi eu consectetur
+                        consectetur, nisi nisl consectetur nisi,
+                        eu consectetur nisi nisl euismod nisi.
+                    </p>
+                    <br>
+                    <p><strong>Your message: </strong> {{ msg }}</p>
+                {% endif %}
+            </article>
+        {% endif %}
+    </div>
+{% endblock %}

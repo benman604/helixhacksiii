@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//jquerycsvtotable.googlecode.com/files/jquery.csvToTable.js"></script>
+    <h1>Credit Card Fraud Detector</h1>
+    <p>The CSV file should contain the columns number, trans_data, cc_num, merchant, category, amt, first, last, gender, street, city, state, zip, lat, long, city_pop, job, dob, trans_num, unix_time, merch_lat, merch_long, is_fraud</p>
+    <form class="grid">
+        <input type="file" id="csvFile" name="csvFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+        <input type="submit" value="Upload Your File">
+    </form>
+    <p><b>Here is a sample CSV file!</b></p>
+    <div id="CSV"></div>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 2px black solid;
+            font: 12px sans-serif;
+        }
+
+        td {
+            border: 1px black solid;
+            padding: 5px;
+        }
+    </style>
+    <script src="d3.min.js?v=3.2.8"></script>
+    <script src="text/javascript" charset="utf-8">
+        d3.text("fraudTest.csv", function(data) {
+            var csvEmbed = d3.csv.parseRows(data);
+            var container = d3.select("body").append("table").selectAll("tr").data(csvEmbed).enter().append("tr").selectAll("td").data(function(d) { return d; }).enter().append("td").text(function(d) { return d; });
+        });
+{% endblock %}

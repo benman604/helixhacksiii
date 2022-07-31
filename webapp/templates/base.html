@@ -1,0 +1,29 @@
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Detector</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <nav style="margin-bottom: 20vh; margin-right: 25px; margin-left: 25px;">
+        <ul>
+            <li><a href="/" style="color:black">Digital <strong>Scam Protection</strong> Toolkit</a></li>
+        </ul>
+        <ul>
+            <li><a href="scamdetector">Scam Detector</a></li>
+            <li><a href="creditcard">Credit Card Fraud</a></li>
+            <li><a href="questions">Questions and Answers</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" style="margin-bottom: 30px">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
