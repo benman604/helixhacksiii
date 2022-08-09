@@ -1,6 +1,6 @@
 # Digital Scam Protection Toolkit
 
-Submission for HelixHacksIII
+Submission for HelixHacksIII: https://devpost.com/software/digital-scam-protection-toolkit
 
 
 Install all dependencies, then run the web app:
